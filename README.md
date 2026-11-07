@@ -8,7 +8,8 @@ This model predicts whether participants choose to read a trivia fact despite a 
 
 BOLD signals from all voxels within 18 ROIs are used without PCA. Each trial is resampled to 18 time points (TRs; mean trial length). A voxel tokenizer converts regional signals into tokens, spatial embeddings encode ROI coordinates, and a transformer integrates information across regions.
 
-ROI list: 
+ROI list:
+
 1. Pregenual anterior cingulate cortex
 2. Subgenual anterior cingulate cortex
 3. Supracallosal anterior cingulate cortex
@@ -54,7 +55,26 @@ Evaluation uses leave-one-subject-out cross-validation across 30 participants.
 
 ### Generate results using an already-trained model
 
-With trained model weights and the required analysis inputs available, run the Figure 5 scripts directly. Repeating fMRI preprocessing or model training is not required.
+First, download `results_arch` and `beh_fmri` from [Science Data Bank](https://doi.org/10.57760/sciencedb.0175h). These folders contain the trained model weights and analysis inputs.
+
+Extract both folders directly into `analysis_transformer_model_curiosity_project`, the folder structure should be:
+
+```text
+analysis_transformer_model_curiosity_project/
+├── assets/
+├── beh_fmri/
+├── results_arch/
+│   └── d64_l1_h4/
+│       └── seed42/
+│           ├── models/                # loso_par01.pt through loso_par30.pt
+│           ├── per_subject/           # Participant-level predictions and contributions
+│           └── attention_tables.pkl   # Fitted attention-analysis results
+├── fig5_transformer_beh.py
+├── fig5_attention.py
+└── fig5_activitymap.py
+```
+
+With these inputs in place, run the Figure 5 scripts directly. Repeating fMRI preprocessing or model training is not required.
 
 From the package folder, install the dependencies using Python 3.12:
 
@@ -69,9 +89,6 @@ python fig5_transformer_beh.py
 python fig5_attention.py
 python fig5_activitymap.py
 ```
-
-The scripts read trained models and participant-level results from `results_arch/d64_l1_h4/seed42/`. Keep the supplied `assets/` folder. The attention analysis also requires cached model inputs or prepared BOLD and behavioral data to rebuild them. These data and trained results are not included in this source-code package.
-
 The behavioral and attention scripts display figures. The activity-map script saves NIfTI t maps and masks under `results_2ndlevel_arch/`.
 
 ### Train the model from the study data
@@ -81,7 +98,7 @@ This step is needed only if you want to train the model yourself rather than use
 Download the behavioral and fMRI data from [Science Data Bank](https://doi.org/10.57760/sciencedb.0175h). Prepare these folders inside the package:
 
 - `bold_signals_standard/`: the complete preprocessed 4D BOLD time series for run 3 of each participant, named `standard_bold_par01_s3.nii.gz` through `standard_bold_par30_s3.nii.gz`.
-- `beh_fmri/`: matching behavioral records, including task timing, choices, self/risk ratings, and mouse trajectories for all 128 trials. Preserve the original filenames and formats.
+- `beh_fmri/`: complete matching behavioral records, including task timing, choices, self/risk ratings, orientation variables, and mouse trajectories for all 128 trials. The plotting subset alone is insufficient for training. Preserve the original filenames and formats.
 
 If these prepared inputs are already available, use them directly. Otherwise, preprocess the raw fMRI data following the paper. Transform each participant’s FSL `filtered_func_data.nii.gz` time series to MNI152 2 mm space using the corresponding functional-to-standard registration.
 
@@ -98,8 +115,6 @@ Train the selected model across all 30 cross-validation folds:
 ```bash
 bash configure_and_run_me_first.sh local
 ```
-
-Missing caches are rebuilt automatically in `cache_voxels/`. Trained models and predictions are saved under `results_arch/d64_l1_h4/seed42/`. After training, run the Figure 5 scripts above.
 
 ## 4. Attention and directional interactions
 
