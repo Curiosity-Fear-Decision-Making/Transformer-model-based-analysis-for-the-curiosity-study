@@ -2,13 +2,33 @@
 
 ## 1. Purpose
 
-This model predicts whether participants choose to read a trivia fact despite a potential threat or skip it, using regional fMRI signals. It examines regional contributions to task-related representations and how changing attention between brain regions affects predicted choices.
+This model predicts whether participants choose to read a trivia fact despite a potential threat or skip it, using fMRI BOLD signals as input. It examines regional contributions to task-related representations and how changing attention between brain regions affects predicted choices.
 
 ## 2. Model and parameters
 
-BOLD signals from all voxels within 18 ROIs and the supplied small-volume mask are used without PCA. Each trial is resampled to 18 time points. A voxel tokenizer converts regional signals into tokens, spatial embeddings encode ROI coordinates, and a transformer integrates information across regions.
+BOLD signals from all voxels within 18 ROIs are used without PCA. Each trial is resampled to 18 time points (TRs; mean trial length). A voxel tokenizer converts regional signals into tokens, spatial embeddings encode ROI coordinates, and a transformer integrates information across regions.
 
-Readout heads predict choice, curiosity, threat, social information, and mouse trajectories.
+ROI list: 
+1. Pregenual anterior cingulate cortex
+2. Subgenual anterior cingulate cortex
+3. Supracallosal anterior cingulate cortex
+4. Amygdala
+5. Caudate nucleus
+6. Superior frontal gyrus, medial orbital part
+7. Superior frontal gyrus, medial part
+8. Hippocampus
+9. Insula
+10. Anterior orbitofrontal cortex
+11. Medial orbitofrontal cortex
+12. Posterior orbitofrontal cortex
+13. Olfactory cortex
+14. Putamen
+15. Gyrus rectus
+16. Substantia nigra pars compacta
+17. Ventral tegmental area
+18. Nucleus accumbens
+
+Readout heads predict choice, curiosity, threat. Social ratings and mouse trajectories were included to enhance model interpretation.
 
 | Parameter | Value |
 | --- | --- |
