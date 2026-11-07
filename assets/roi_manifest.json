@@ -1,0 +1,100 @@
+{
+  "dataset_signature": "63cdf6b489535ad968ba",
+  "n_roi": 18,
+  "n_svc_voxels": 19880,
+  "input_type": "svc_all_voxels",
+  "t_bold": 18,
+  "excluded_rois": [],
+  "regions": [
+    {
+      "name": "ACC_pre",
+      "voxels": 1132,
+      "input_voxels": 1132
+    },
+    {
+      "name": "ACC_sub",
+      "voxels": 225,
+      "input_voxels": 225
+    },
+    {
+      "name": "ACC_sup",
+      "voxels": 940,
+      "input_voxels": 940
+    },
+    {
+      "name": "Amygdala",
+      "voxels": 317,
+      "input_voxels": 317
+    },
+    {
+      "name": "Caudate",
+      "voxels": 950,
+      "input_voxels": 950
+    },
+    {
+      "name": "Frontal_Med_Orb",
+      "voxels": 1316,
+      "input_voxels": 1316
+    },
+    {
+      "name": "Frontal_Sup_Medial",
+      "voxels": 3997,
+      "input_voxels": 3997
+    },
+    {
+      "name": "Hippocampus",
+      "voxels": 1278,
+      "input_voxels": 1278
+    },
+    {
+      "name": "Insula",
+      "voxels": 3067,
+      "input_voxels": 3067
+    },
+    {
+      "name": "OFCant",
+      "voxels": 1030,
+      "input_voxels": 1030
+    },
+    {
+      "name": "OFCmed",
+      "voxels": 1037,
+      "input_voxels": 1037
+    },
+    {
+      "name": "OFCpost",
+      "voxels": 1046,
+      "input_voxels": 1046
+    },
+    {
+      "name": "Olfactory",
+      "voxels": 447,
+      "input_voxels": 447
+    },
+    {
+      "name": "Putamen",
+      "voxels": 1387,
+      "input_voxels": 1387
+    },
+    {
+      "name": "Rectus",
+      "voxels": 1321,
+      "input_voxels": 1321
+    },
+    {
+      "name": "SN_pc",
+      "voxels": 65,
+      "input_voxels": 65
+    },
+    {
+      "name": "VTA",
+      "voxels": 19,
+      "input_voxels": 19
+    },
+    {
+      "name": "Vent_Str",
+      "voxels": 306,
+      "input_voxels": 306
+    }
+  ]
+}
